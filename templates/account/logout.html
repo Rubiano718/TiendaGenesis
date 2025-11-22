@@ -1,0 +1,27 @@
+{% extends "TiendaGenesisApp/base.html" %}
+
+{% block content %}
+<style>
+  .logout-box {
+    max-width: 420px;
+    margin: 120px auto;
+    padding: 35px;
+    background: #ffffffee;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+</style>
+
+<div class="logout-box">
+    <h2 class="mb-4">¿Deseas cerrar sesión?</h2>
+
+    <form method="POST" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning w-100">Cerrar sesión</button>
+    </form>
+</div>
+
+{% endblock %}
+
+

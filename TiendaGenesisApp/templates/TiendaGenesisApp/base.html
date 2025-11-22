@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+  {% load static %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Genesis Clothing</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'TiendaGenesisApp/css/styles.css' %}">
+</head>
+
+<body>
+  
+  <!-- NavBar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'Inicio' %}">Genesis Clothing</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'Inicio' %}">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Informacion' %}">Informacion</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'tienda:Tienda' %}">Tienda</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'Contacto' %}">Contacto</a>
+          </li>
+
+          <!-- === BOTÓN DEL CARRITO === -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'carrito:carrito' %}">
+              <i class="bi bi-cart3"></i> Carrito
+            </a>
+          </li>
+
+          <!-- LOGIN / LOGOUT -->
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-warning" href="{% url 'account_logout' %}">Cerrar sesión</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="{% url 'account_login' %}">Iniciar sesión</a>
+            </li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido Cambiante -->
+  {% block content %}
+  {% endblock %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<footer class="bg-dark p-3">
+  <div class="container text-center">
+    <nav class="d-flex justify-content-evenly">
+      <a href="https://github.com/NicolasOyu/TiendaGenesis.git" target="_blank">
+        <i class="bi bi-github fs-3"></i>
+      </a>
+      <a href="https://www.instagram.com/genesis.clxthing?igsh=dTR5anlvaWc0ZXd5" target="_blank">
+        <i class="bi bi-instagram fs-3"></i>
+      </a>
+    </nav>
+    <small class="text-white">
+      &copy; 2025
+    </small>
+  </div>
+</footer>
+
+</html>
+

@@ -1,0 +1,98 @@
+{% extends "TiendaGenesisApp/base.html" %}
+{% load static %}
+
+{% block content %}
+    
+<div class="container">
+
+    <article class="text-center mt-5">
+        <h1>Catalogo</h1>
+    </article>
+
+    <div class="row">
+
+{% for producto in productos %}
+
+<div class="col-md-3 mb-4 mt-4">
+    <div class="card shadow-sm border-0 h-100" style="transition: transform 0.2s ease;">
+        <img src="{{ producto.imagen.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+
+        <div class="card-body text-center d-flex flex-column justify-content-between" style="background-color: #e9ecef;">
+            <div>
+                <h5 class="card-title fw-bold mb-2">{{ producto.nombre }}</h5>
+                <p class="text-dark fw-semibold mb-1">${{ producto.precio }}</p>
+            </div>
+
+            <div class="mt-2">
+                <span class="badge bg-primary">{{ producto.categoria.nombre }}</span>
+                <span class="badge bg-secondary">Talla: {{ producto.talla }}</span>
+
+                {% if producto.disponibilidad %}
+                    <span class="badge bg-success">Disponible</span>
+                {% else %}
+                    <span class="badge bg-danger">Agotado</span>
+                {% endif %}
+
+                <!-- NUEVO: Selector de cantidad + botón -->
+                <form method="POST" action="{% url 'carrito:agregar_carrito' producto.id %}">
+                    {% csrf_token %}
+                    <input type="number" name="cantidad" value="1" min="1" class="form-control mb-2">
+                    <button class="btn btn-success w-100">Agregar al carrito</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card:hover {
+    transform: scale(1.03);
+}
+</style>
+
+{% endfor %}
+
+    </div>
+
+</div>
+
+<section class="text-center mt-4 mb-4">
+    <div style="width: 75%; margin: auto; text-align: center;">
+
+        <strong class="text-light mb-3 d-block" style="font-size: 1.2rem;">Categorías</strong>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+            {% for categoria in categorias %}
+                <a href="{% url 'Categoria' categoria.id %}" 
+                   class="categoria-badge px-3 py-1">
+                    {{ categoria.nombre }}
+                </a>
+            {% empty %}
+                <span class="text-muted">No hay categorías disponibles</span>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<style>
+.categoria-badge {
+    background-color: #f8f9fa;
+    border: 1px solid #6c757d;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #212529;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.categoria-badge:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+    transform: translateY(-2px);
+}
+</style>
+
+{% endblock %}

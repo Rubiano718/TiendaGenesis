@@ -1,0 +1,54 @@
+{% extends "TiendaGenesisApp/base.html" %}
+{% load socialaccount %}
+
+{% block content %}
+<style>
+  body {
+    background: url('https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?auto=format&fit=crop&w=1400&q=80')
+      no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .auth-box {
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 35px;
+    background: #ffffffdd;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+</style>
+
+<div class="auth-box">
+    <h2 class="text-center mb-4">Crear cuenta</h2>
+
+    <form method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+
+        <label><strong>Correo electrónico:</strong></label>
+        <input type="email" name="email" class="form-control" required placeholder="Tu correo">
+
+        <label class="mt-3"><strong>Contraseña:</strong></label>
+        <input type="password" name="password1" class="form-control" required placeholder="Contraseña">
+
+        <label class="mt-3"><strong>Repetir contraseña:</strong></label>
+        <input type="password" name="password2" class="form-control" required placeholder="Repite tu contraseña">
+
+        <button class="btn btn-dark w-100 mt-3">Registrarse</button>
+    </form>
+
+    <hr class="my-4">
+
+    <a class="btn btn-danger w-100" href="{% provider_login_url 'google' method='oauth2' %}">
+        Registrarse con Google
+    </a>
+
+    <p class="mt-3 text-center">
+        ¿Ya tienes cuenta?
+        <a href="{% url 'account_login' %}">Iniciar sesión</a>
+    </p>
+</div>
+{% endblock %}
+
+
+

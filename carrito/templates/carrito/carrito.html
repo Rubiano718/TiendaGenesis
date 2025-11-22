@@ -1,0 +1,81 @@
+{% extends "TiendaGenesisApp/base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🛒 Carrito de Compras</h2>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    {% if productos %}
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in productos %}
+                <tr>
+                    <td><img src="{{ item.producto.imagen.url }}" width="60"></td>
+                    <td>{{ item.producto.nombre }}</td>
+
+                    <td class="text-center">
+
+                        <a href="{% url 'carrito:restar_carrito' item.producto.id %}"
+                           class="btn btn-warning btn-sm">−</a>
+
+                        <span class="mx-2">{{ item.cantidad }}</span>
+
+                        <form method="POST" action="{% url 'carrito:agregar_carrito' item.producto.id %}" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="cantidad" value="1">
+                            <button class="btn btn-success btn-sm">+</button>
+                        </form>
+
+                    </td>
+
+                    <td>${{ item.producto.precio }}</td>
+                    <td><strong>${{ item.subtotal }}</strong></td>
+
+                    <td>
+                        <a href="{% url 'carrito:eliminar_carrito' item.producto.id %}" class="btn btn-danger btn-sm">X</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3 class="text-end mt-3">
+            Total: <strong>${{ total }}</strong>
+        </h3>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'carrito:limpiar_carrito' %}" class="btn btn-warning">Vaciar Carrito</a>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'carrito:finalizar' %}" class="btn btn-primary btn-lg">
+                Finalizar compra
+            </a>
+        </div>
+
+    {% else %}
+        <p class="text-center mt-4">El carrito está vacío.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+

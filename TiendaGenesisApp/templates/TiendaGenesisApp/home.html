@@ -1,0 +1,36 @@
+{% extends "TiendaGenesisApp/base.html" %}
+
+
+
+
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mb-5">
+          <article class="text-center mt-5">
+            <h1>Comencemos tu nuevo proyecto</h1>
+            <p class="fs-5">Streetwear Brand</p>
+          </article>
+        <section class="row align-items-lg-center mt-5">
+          <article class="col-12 col-lg-6 text-lg-end">
+            <h2>¿Buscas Ropa de Calidad y con un buen estilo?</h2>
+            <p class="fs-5">Ropa StreetWear capaz de imponer estilo y moda en donde quieras que </p>
+          </article>
+          <article class="col-12 col-lg-6">
+            <img src="{% static 'TiendaGenesisApp/img/home1.webp' %}" alt="Paso 1: Concepto y presupuesto"  class="img-fluid">
+          </article>
+        </section>
+        <section class="row align-items-lg-center mt-5 pe-3">
+          <article class="col-12 col-lg-6 order-lg-1">
+            <h2>Gran Variedad de Productos</h2>
+            <p class="fs-5">No te quedes solo con los tipicos diseños, aqui podras elegir el que mejor se acomode con tu personalidad y estilo</p>
+          </article>
+          <article class="col-12 col-lg-6">
+            <img src="{% static 'TiendaGenesisApp/img/home2.webp' %}" class="img-fluid">
+          </article>
+        </section>
+      </div>
+
+{% endblock %}
