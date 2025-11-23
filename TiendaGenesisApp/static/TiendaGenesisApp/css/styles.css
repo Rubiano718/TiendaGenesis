@@ -1,78 +1,61 @@
 /**Custom Properties**/
 
 :root {
-
     --first-color: rgb(0, 0, 0);
     --first-alpha-color: rgb(0, 0, 0.75);
     --second-color: rgb(30, 30, 30);
     --second-alpha-color: rgb(50, 50, 50);
-    --third-color: rgb(221, 201, 201);;
-    
+    --third-color: rgb(221, 201, 201);
+
     --bg-color: rgb(255, 255, 255);
     --bg-alpha-color: rgb(255, 255, 255, 0.75);
-
 }
 
 /**Reset Styles**/
 
 body {
-
     font-family: "PT Serif", serif;
     color: var(--bg-color);
     background-image: url(../img/fondo.png);
-    background-repeat: no-repeat;       
-    background-size: cover;             
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center center;
-   
 }
 
-h1{
-
+h1 {
     color: var(--bg-color);
     font-size: 75px;
-    font: bold;
-
+    font-weight: bold;
 }
 
 /**Bootstrap Styles**/
 
-.nav-link{
-
-    font: bold;
-
+.nav-link {
+    font-weight: bold;
 }
-
 
 /**My Styles**/
 
-/*Contacto*/
+/* ===== CONTACTO ===== */
 
-/* ===== Contacto (estilizando {{ form.as_table }}) ===== */
-
-/* contenedor del form */
 .contacto-form {
   max-width: 980px;
   margin: 0 auto;
 }
 
-/* “tarjeta” translúcida centrada */
-.containerFormulario{
-  display: table;                /* conserva el layout de tabla */
+.containerFormulario {
+  display: table;
   width: 100%;
   margin: 0 auto;
-  background: rgba(0,0,0,.15);   /* panel sobre el fondo */
+  background: rgba(0,0,0,.15);
   border-radius: 14px;
   padding: 1.25rem 1.25rem 1.5rem;
   box-shadow: 0 10px 28px rgba(0,0,0,.25);
-  border-collapse: separate;     /* respeta padding/border-radius */
-  border-spacing: 0 .75rem;      /* separación entre filas */
+  border-collapse: separate;
+  border-spacing: 0 .75rem;
 }
 
-/* filas */
-.containerFormulario tr { }
-
-/* columna de etiquetas (izquierda) */
-.containerFormulario th{
+.containerFormulario th {
   width: 180px;
   padding: .35rem 1rem .35rem .5rem;
   text-align: left;
@@ -83,17 +66,15 @@ h1{
   white-space: nowrap;
 }
 
-/* columna de campos (derecha) */
-.containerFormulario td{
+.containerFormulario td {
   padding: .35rem 1rem .35rem 0;
 }
 
-/* inputs/textarea del form (se aplican por igual, sin separar) */
 .containerFormulario input[type="text"],
 .containerFormulario input[type="email"],
 .containerFormulario input[type="password"],
 .containerFormulario textarea,
-.containerFormulario select{
+.containerFormulario select {
   width: 100%;
   background: rgba(255,255,255,.92);
   border: 1px solid rgba(0,0,0,.18);
@@ -105,72 +86,96 @@ h1{
   color: #111;
 }
 
-/* textarea grande como en el mock */
-.containerFormulario textarea{
+.containerFormulario textarea {
   min-height: 240px;
   resize: vertical;
 }
 
-/* estados de foco y error nativo (required/HTML5) */
 .containerFormulario input:focus,
-.containerFormulario textarea:focus{
+.containerFormulario textarea:focus {
   border-color: rgba(0,0,0,.35);
   box-shadow: 0 0 0 .2rem rgba(0,0,0,.08);
 }
+
 .containerFormulario input:invalid,
-.containerFormulario textarea:invalid{
+.containerFormulario textarea:invalid {
   border-color: #dc3545;
   box-shadow: 0 0 0 .2rem rgba(220,53,69,.15);
 }
 
-/* botón enviar */
-.contacto-submit{
+.contacto-submit {
   appearance: none;
   border: none;
   border-radius: 12px;
-  background: #111;             /* o var(--third-color) si quieres */
+  background: #111;
   color: #fff;
   padding: .8rem 1.6rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform .05s ease, opacity .2s ease;
 }
-.contacto-submit:hover{ opacity: .95; }
-.contacto-submit:active{ transform: translateY(1px); }
 
-/* responsive: si quieres apilar en pantallas pequeñas, reduce ancho de th */
-@media (max-width: 768px){
-  .containerFormulario th{ width: 120px; font-size: 1rem; }
+.contacto-submit:hover { opacity: .95; }
+.contacto-submit:active { transform: translateY(1px); }
+
+@media (max-width: 768px) {
+  .containerFormulario th { width: 120px; font-size: 1rem; }
 }
 
-/* ===== Página Información (CSS Nesting) ===== */
-.informacion-page {
-  .gc-wrap { max-width: 980px; margin-inline: auto; }
-  .gc-card { border-radius: 16px; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,.35); }
+/* ===== INFORMACIÓN (SIN NESTING) ===== */
 
-  .gc-img { height: 360px;
-    img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  }
+.informacion-page .gc-wrap { 
+  max-width: 980px; 
+  margin-inline: auto; 
+}
 
-  /* panel compacto, pegado a la imagen */
-  .gc-panel {
-    background: rgba(0,0,0,.65);
-    backdrop-filter: blur(2px);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 16px;
-  }
-  .gc-panel-compact { padding: 1.75rem 2rem; max-width: 520px; }
+.informacion-page .gc-card { 
+  border-radius: 16px; 
+  overflow: hidden; 
+  box-shadow: 0 12px 28px rgba(0,0,0,.35); 
+}
 
-  .gc-title { color:#fff; font-weight:700; letter-spacing:.3px; }
-  .gc-text  { color:#e9ecef; }
+.informacion-page .gc-img { 
+  height: 360px;
+}
 
-  @media (min-width: 992px) {
-    .gc-img { height: 460px; }
-    .gc-panel-compact { padding: 2rem 2.5rem; }
-  }
+.informacion-page .gc-img img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+}
 
-  /* Tienda */
-  .producto-card {
+.informacion-page .gc-panel {
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+}
+
+.informacion-page .gc-panel-compact { 
+  padding: 1.75rem 2rem; 
+  max-width: 520px; 
+}
+
+.informacion-page .gc-title { 
+  color:#fff; 
+  font-weight:700; 
+  letter-spacing:.3px; 
+}
+
+.informacion-page .gc-text  { 
+  color:#e9ecef; 
+}
+
+@media (min-width: 992px) {
+  .informacion-page .gc-img { height: 460px; }
+  .informacion-page .gc-panel-compact { padding: 2rem 2.5rem; }
+}
+
+/* ===== TIENDA ===== */
+
+.producto-card {
   border: 1px solid #e5e5e5;
   background: white;
   overflow: hidden;
@@ -203,13 +208,8 @@ h1{
   border-top: 1px solid #ddd;
 }
 
-.producto-nombre {
-  font-weight: 600;
-}
-
-.producto-precio {
-  font-weight: 500;
-}
+.producto-nombre { font-weight: 600; }
+.producto-precio { font-weight: 500; }
 
 .producto-add-btn {
   background: transparent;
@@ -228,7 +228,7 @@ h1{
   color: white;
 }
 
-/* Estilo para los chips de categoría */
+/* Categorías */
 .categoria-badge {
     background-color: #f8f9fa !important;
     border: 1px solid #6c757d !important;
@@ -246,5 +246,4 @@ h1{
     border-color: #0d6efd !important;
     color: white !important;
     transform: translateY(-2px) !important;
-}
 }
