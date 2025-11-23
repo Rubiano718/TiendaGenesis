@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
+CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
