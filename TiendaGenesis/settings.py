@@ -6,11 +6,15 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ---- Claves y Debug ----
+# ---- CLAVES Y DEBUG ----
 SECRET_KEY = os.getenv("SECRET_KEY", "inseguro")
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "tiendagenesis.onrender.com"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "tiendagenesis.onrender.com"
+]
 
 # ---- GOOGLE ----
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
@@ -25,14 +29,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Apps
+    # Apps del proyecto
     'TiendaGenesisApp',
     'informacion',
     'contacto',
     'tienda',
     'carrito',
 
-    # Cloudinary media
+    # Cloudinary
     "cloudinary",
     "cloudinary_storage",
 
@@ -105,29 +109,19 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# CLOUDINARY STORAGE
+# ---- CLOUDINARY ----
+# No expongas las claves aquí.
+# Render usará la variable de entorno CLOUDINARY_URL automáticamente.
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-CLOUDINARY_URL = "cloudinary://698957891112312:41JCJn39Wg97okAuuTxI5svR1jc@dmnxkf9qn"
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dmnxkf9qn',
-    'API_KEY': '698957891112312',
-    'API_SECRET': '41JCJn39Wg97okAuuTxI5svR1jc',
-}
-
-
-# ---- EMAIL ----
 # ---- EMAIL (SendGrid) ----
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 DEFAULT_FROM_EMAIL = "camilo.rubiano@estudiantesunibague.edu.co"
 
-# Opcional: evita que SendGrid haga tracking de clics
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 SENDGRID_TRACK_EMAILS = False
-
 
 # ---- AUTH / LOGIN ----
 LOGIN_REDIRECT_URL = '/'
@@ -152,4 +146,5 @@ SOCIALACCOUNT_PROVIDERS = {
         "LOCALE_FUNC": lambda request: "es",
     }
 }
+
 
