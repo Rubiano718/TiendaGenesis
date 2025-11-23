@@ -1,12 +1,10 @@
 from django.db import models
 from django.core.validators import RegexValidator
 
-# Create your models here.
 class CategoriaProducto(models.Model):
-
     nombre = models.CharField(max_length=50, validators=[RegexValidator(
-    regex=r"^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ' -]+$",
-    message="Solo se permiten letras, espacios, guiones y apóstrofes."
+        regex=r"^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ' -]+$",
+        message="Solo se permiten letras, espacios, guiones y apóstrofes."
     )])
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -17,7 +15,8 @@ class CategoriaProducto(models.Model):
 
     def __str__(self):
         return self.nombre
-    
+
+
 class Producto(models.Model):
 
     TALLAS = [
@@ -30,11 +29,14 @@ class Producto(models.Model):
     ]
 
     nombre = models.CharField(max_length=50, validators=[RegexValidator(
-    regex=r"^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ' -]+$",
-    message="Solo se permiten letras, espacios, guiones y apóstrofes."
+        regex=r"^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ' -]+$",
+        message="Solo se permiten letras, espacios, guiones y apóstrofes."
     )])
     categoria = models.ForeignKey(CategoriaProducto, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="tienda")
+
+    # ✔ Nuevo campo: ruta estática
+    imagen = models.CharField(max_length=255, blank=True, null=True)
+
     precio = models.FloatField()
     talla = models.CharField(max_length=3, choices=TALLAS, default='M')
     disponibilidad = models.BooleanField(default=True)

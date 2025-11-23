@@ -3,19 +3,20 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ---- Claves y Debug ----
 SECRET_KEY = os.getenv("SECRET_KEY", "inseguro")
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "tiendagenesis.onrender.com"]
 
-# GOOGLE
+# ---- GOOGLE ----
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 
+# ---- APPS ----
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,6 +51,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# ---- MIDDLEWARE ----
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -64,6 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'TiendaGenesis.urls'
 
+# ---- TEMPLATES ----
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,6 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'TiendaGenesis.wsgi.application'
 
+# ---- DATABASE ----
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -88,26 +92,32 @@ DATABASES = {
     }
 }
 
+# ---- TIME / LANG ----
 LANGUAGE_CODE = 'es-co'
 TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
 
+# ---- STATIC ----
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-# STORAGE STATICFILES
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# ---- CLOUDINARY STORAGE ----
-MEDIA_URL = '/media/'
+# CLOUDINARY STORAGE
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+CLOUDINARY_URL = "cloudinary://698957891112312:41JCJn39Wg97okAuuTxI5svR1jc@dmnxkf9qn"
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dmnxkf9qn',
+    'API_KEY': '698957891112312',
+    'API_SECRET': '41JCJn39Wg97okAuuTxI5svR1jc',
+}
 
 
-
-# EMAIL
+# ---- EMAIL ----
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
@@ -115,6 +125,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
+# ---- AUTH / LOGIN ----
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
