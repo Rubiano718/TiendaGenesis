@@ -11,47 +11,51 @@
 
     <div class="row">
 
-{% for producto in productos %}
+    {% for producto in productos %}
 
-<div class="col-md-3 mb-4 mt-4">
-    <div class="card shadow-sm border-0 h-100" style="transition: transform 0.2s ease;">
-        <img src="{% static producto.imagen %}" class="card-img-top" style="height: 200px; object-fit: cover;">
+    <div class="col-md-3 mb-4 mt-4">
+        <div class="card shadow-sm border-0 h-100" style="transition: transform 0.2s ease;">
+            
+            <!-- IMAGEN CORREGIDA -->
+            <img src="{% static 'productos/' %}{{ producto.imagen }}" 
+                 class="card-img-top" 
+                 style="height: 200px; object-fit: cover;">
 
-        <div class="card-body text-center d-flex flex-column justify-content-between" style="background-color: #e9ecef;">
-            <div>
-                <h5 class="card-title fw-bold mb-2">{{ producto.nombre }}</h5>
-                <p class="text-dark fw-semibold mb-1">${{ producto.precio }}</p>
-            </div>
+            <div class="card-body text-center d-flex flex-column justify-content-between" style="background-color: #e9ecef;">
+                <div>
+                    <h5 class="card-title fw-bold mb-2">{{ producto.nombre }}</h5>
+                    <p class="text-dark fw-semibold mb-1">${{ producto.precio }}</p>
+                </div>
 
-            <div class="mt-2">
-                <span class="badge bg-primary">{{ producto.categoria.nombre }}</span>
-                <span class="badge bg-secondary">Talla: {{ producto.talla }}</span>
+                <div class="mt-2">
+                    <span class="badge bg-primary">{{ producto.categoria.nombre }}</span>
+                    <span class="badge bg-secondary">Talla: {{ producto.talla }}</span>
 
-                {% if producto.disponibilidad %}
-                    <span class="badge bg-success">Disponible</span>
-                {% else %}
-                    <span class="badge bg-danger">Agotado</span>
-                {% endif %}
+                    {% if producto.disponibilidad %}
+                        <span class="badge bg-success">Disponible</span>
+                    {% else %}
+                        <span class="badge bg-danger">Agotado</span>
+                    {% endif %}
 
-                <!-- NUEVO: Selector de cantidad + botón -->
-                <form method="POST" action="{% url 'carrito:agregar_carrito' producto.id %}">
-                    {% csrf_token %}
-                    <input type="number" name="cantidad" value="1" min="1" class="form-control mb-2">
-                    <button class="btn btn-success w-100">Agregar al carrito</button>
-                </form>
+                    <!-- Agregar al carrito -->
+                    <form method="POST" action="{% url 'carrito:agregar_carrito' producto.id %}">
+                        {% csrf_token %}
+                        <input type="number" name="cantidad" value="1" min="1" class="form-control mb-2">
+                        <button class="btn btn-success w-100">Agregar al carrito</button>
+                    </form>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<style>
-.card:hover {
-    transform: scale(1.03);
-}
-</style>
+    <style>
+    .card:hover {
+        transform: scale(1.03);
+    }
+    </style>
 
-{% endfor %}
+    {% endfor %}
 
     </div>
 
@@ -96,3 +100,4 @@
 </style>
 
 {% endblock %}
+
