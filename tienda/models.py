@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from cloudinary.models import CloudinaryField   # ← IMPORTANTE
 
 class CategoriaProducto(models.Model):
     nombre = models.CharField(max_length=50, validators=[RegexValidator(
@@ -34,8 +35,8 @@ class Producto(models.Model):
     )])
     categoria = models.ForeignKey(CategoriaProducto, on_delete=models.CASCADE)
 
-    # ✔ Nuevo campo: ruta estática
-    imagen = models.CharField(max_length=255, blank=True, null=True)
+    # ✔ CAMPO CORRECTO PARA CLOUDINARY (FUNCIONA CON .url)
+    imagen = CloudinaryField("imagen", folder="productos", blank=True, null=True)
 
     precio = models.FloatField()
     talla = models.CharField(max_length=3, choices=TALLAS, default='M')
@@ -49,3 +50,4 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
