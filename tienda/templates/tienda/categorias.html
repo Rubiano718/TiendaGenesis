@@ -6,7 +6,7 @@
 <div class="container">
 
     <article class="text-center mt-5">
-        <h1>Catalogo</h1>
+        <h1>Catálogo por Categoría</h1>
     </article>
 
     {% if productos %}
@@ -52,7 +52,7 @@
 
     {% else %}
         <div class="text-center mt-5 mb-5">
-            <h2 class="text-light">No hay productos disponibles en esta categoría</h2>
+            <h2 class="text-light">No hay productos en esta categoría</h2>
         </div>
     {% endif %}
 
@@ -60,7 +60,7 @@
 
 <div class="text-center mt-4 mb-5">
     <a href="{% url 'Tienda' %}" class="btn btn-light px-4 py-2" style="border-radius: 25px; border: 1px solid #dee2e6;">
-        ← Volver a todos los productos
+        ← Volver al catálogo
     </a>
 </div>
 
