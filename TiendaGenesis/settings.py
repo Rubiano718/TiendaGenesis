@@ -118,13 +118,16 @@ CLOUDINARY_STORAGE = {
 
 
 # ---- EMAIL ----
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "True") == "True"
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
+# ---- EMAIL (SendGrid) ----
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+# Opcional: evita que SendGrid haga tracking de clics
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+SENDGRID_TRACK_EMAILS = False
+
 
 # ---- AUTH / LOGIN ----
 LOGIN_REDIRECT_URL = '/'
