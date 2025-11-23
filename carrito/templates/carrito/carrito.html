@@ -27,9 +27,10 @@
             <tbody>
                 {% for item in productos %}
                 <tr>
-                    <td>
-    <img src="{% static 'productos/' %}{{ item.producto.imagen }}" width="60">
+                  <td>
+    <img src="{{ item.producto.imagen.url }}" width="60">
 </td>
+
                     <td>{{ item.producto.nombre }}</td>
 
                     <td class="text-center">
