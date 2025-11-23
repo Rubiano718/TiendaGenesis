@@ -34,22 +34,17 @@ def categoria(request, categoria_id):
 # 🔥 Vista temporal para limpiar rutas antiguas del campo imagen
 # ---------------------------------------------------------
 def limpiar_imagenes(request):
-    """
-    Esta vista elimina rutas viejas como 'tienda/archivo.png'
-    que quedaron de Cloudinary o del FileField anterior.
-    Después podrás poner rutas de /static/productos/ sin errores.
-    """
     productos = Producto.objects.all()
     count = 0
 
     for p in productos:
-        # Detectar rutas viejas provenientes del FileField
-        if p.imagen and ("tienda/" in p.imagen or "media/" in p.imagen):
-            p.imagen = ""   # limpiar
+        if p.imagen and "tienda/" in p.imagen:
+            # Eliminar el prefijo tienda/
+            p.imagen = p.imagen.replace("tienda/", "")
             p.save()
             count += 1
 
-    return HttpResponse(f"Rutas antiguas eliminadas del campo imagen: {count}")
+    return HttpResponse(f"Rutas corregidas: {count}")
 
 
 
