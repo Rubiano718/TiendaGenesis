@@ -122,7 +122,7 @@ CLOUDINARY_STORAGE = {
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+DEFAULT_FROM_EMAIL = "camilo.rubiano@estudiantesunibague.edu.co"
 
 # Opcional: evita que SendGrid haga tracking de clics
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
